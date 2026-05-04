@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do App</title>
+  <link rel="stylesheet" href="todostyle.css">
+</head>
+<body>
+
+<div class="app">
+  <h1>My Tasks</h1>
+
+  <div class="input-box">
+    <input type="text" id="taskInput" placeholder="Add a new task...">
+    <button id="addBtn">ADD</button>
+  </div>
+
+  <ul id="taskList"></ul>
+</div>
+
+<script>
+const input=document.getElementById("taskInput");
+const add=document.getElementById("addBtn");
+const list=document.getElementById("taskList");
+add.addEventListener("click",addtask);
+input.addEventListener("keypress",function(e){
+if(e.key==="Enter"){
+  addtask();
+};
+});
+function addtask(){
+  const task=input.value.trim();
+  if(task===""){
+    alert("invalid input");
+    return;
+  };
+const span=document.createElement("span");
+const btndel=document.createElement("span");
+const li=document.createElement("li");
+span.textContent=task;
+btndel.textContent="❌";
+btndel.classList.add("delete-btn");
+span.addEventListener("click",function(){
+  span.classList.toggle("completed");
+
+});
+btndel.addEventListener("click",function(){
+  li.remove();
+});
+li.appendChild(span);
+li.appendChild(btndel);
+list.appendChild(li);
+input.value="";}
+
+
+
+
+
+</script>
+</body>
+</html>
